@@ -1,0 +1,187 @@
+﻿@model IEnumerable<FirstProjectMarketing.Models.Firstcartproduct>
+@{
+    ViewData["Title"] = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="icon" href="img/favicon.png" type="image/png" />
+    <title>Eiser ecommerce</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/assetsHome/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/assetsHome/vendors/linericon/style.css" />
+    <link rel="stylesheet" href="~/assetsHome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/assetsHome/css/themify-icons.css" />
+    <link rel="stylesheet" href="~/assetsHome/vendors/owl-carousel/owl.carousel.min.css" />
+    <link rel="stylesheet" href="~/assetsHome/vendors/lightbox/simpleLightbox.css" />
+    <link rel="stylesheet" href="~/assetsHome/vendors/nice-select/css/nice-select.css" />
+    <link rel="stylesheet" href="~/assetsHome/vendors/animate-css/animate.css" />
+    <link rel="stylesheet" href="~/assetsHome/vendors/jquery-ui/jquery-ui.css" />
+    <!-- main css -->
+    <link rel="stylesheet" href="~/assetsHome/css/style.css" />
+    <link rel="stylesheet" href="~/assetsHome/css/responsive.css" />
+
+
+</head>
+
+<body style="overflow-x:hidden">
+    <section class="" style="background-image: url(/Images/ecommerce-2140604__340.jpg); background-repeat:no-repeat; background-size:100% 100%; background-position:center">
+        <div class="" style="height:450px!important">
+            <div style="height:130px; background-color:#6e6a6d8f; width:100%">
+            </div>
+        </div>
+    </section>
+    <!--================Checkout Area =================-->
+    <section class="checkout_area section_gap">
+        <div class="container">
+            <div class="returning_customer">
+
+                <p>
+                    If you have shopped with us before, please enter your details in the
+                    boxes below. If you are a new customer, please proceed to the
+                    Billing & Shipping section.
+                </p>
+
+            </div>
+            <div class="billing_details">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <h3>Billing Details</h3>
+                        <form class="row contact_form" asp-action="Checkout" asp-controller="Cart" method="post">
+                            <div class="col-md-6 form-group p_star">
+                                <input type="text" class="form-control" id="first" name="name" placeholder="First Name" required />
+                            </div>
+                            <div class="col-md-6 form-group p_star">
+                                <input type="text" class="form-control" id="last" name="name" placeholder="Last Name" required />
+                            </div>
+
+                            <div class="col-md-6 form-group p_star">
+                                <input type="text" class="form-control" id="number" name="number" placeholder="Phone" required />
+                            </div>
+                            <div class="col-md-6 form-group p_star">
+                                <input type="text" class="form-control" id="email" name="compemailany" placeholder="E-mail Address" required />
+                            </div>
+                            @*<div class="col-md-12 form-group p_star">
+                                <select class="country_select">
+                                <option value="1">Country</option>
+                                <option value="2">Country</option>
+                                <option value="4">Country</option>
+                                </select>
+                                </div>*@
+                            <div class="col-md-12 form-group p_star">
+                                <input type="text" class="form-control" name="Cardnumber" placeholder="Card Number" required />
+                            </div>
+                            <div class="col-md-12 form-group p_star">
+                                <input type="text" class="form-control" name="Nameoncard" placeholder="Name on Card" required />
+                            </div>
+                            <div class="col-md-12 form-group p_star">
+                                <input type="text" class="form-control" name="Cvc" placeholder="CVV"/>
+                            </div>
+                            <div class="col-md-12 form-group p_star">
+                                <select class="country_select" style="border-radius:15px" name="Paymenttype" required>
+                                    <option value="Visa">Visa</option>
+                                    <option value="Credit Card">Credit Card</option>
+                                    <option value="Paypal">Paypal</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                <input type="date" class="form-control" name="Expirydate" placeholder="Expier Date" required />
+                            </div>
+
+                            <div class="form-group col-12">
+                                <input type="checkbox" id="f-option4" name="selector" required />
+                                <label for="f-option4">I’ve read and accept the </label>
+                                <a href="#">terms & conditions*</a>
+                            </div>
+                            <div class="col-5">
+                                <input type="submit" class="main_btn" value="Proceed to Paypal">
+                            </div>
+                            @Html.Raw(TempData["msg"])
+                        </form>
+                    </div>
+
+
+
+                    <div class="col-lg-5" style="position:relative">
+                        <div class="order_box" id="pdf">
+                            <h2>Your Order</h2>
+                            <ul class="list">
+                                <li>
+                                    <a>
+                                        Product <span>Total</span>
+                                    </a>
+                                </li>
+                                @foreach (var item in Model)
+                                {
+                                    <li>
+                                        <a>
+                                            <span class="first col-6">@item.Product.ProductName</span>
+                                            <span class="middle col-3">x @item.CartQuantity</span>
+                                            <span class="">$@(item.CartQuantity * item.Product.ProductPrice)</span>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                            <ul class="list list_2">
+                                <li>
+                                    <a>
+                                        Subtotal
+                                        <span>$@ViewBag.SubTotal</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        Shipping
+                                        <span>Flat rate: $0.00</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        Total
+                                        <span>$@(ViewBag.SubTotal)</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <button class="main_btn" style="position: absolute; top: 15px; left: 374px; font-size:13px;border:none!important; background:none!important; color:black!important" onclick="saveDiv('pdf','Title')">
+                            <i class="fa fa-download" aria-hidden="true"></i>
+                        </button>
+
+                    </div>
+
+
+
+                    @*<div id="editor">
+                        </div>*@
+                    @*<button id="cmd">generate PDF</button>*@
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!--================End Checkout Area =================-->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="~/js/site.js"></script>
+    <script src="~/assetsHome/js/jquery-3.2.1.min.js"></script>
+    <script src="~/assetsHome/js/popper.js"></script>
+    <script src="~/assetsHome/js/bootstrap.min.js"></script>
+    <script src="~/assetsHome/js/stellar.js"></script>
+    <script src="~/assetsHome/vendors/lightbox/simpleLightbox.min.js"></script>
+    <script src="~/assetsHome/vendors/nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="~/assetsHome/vendors/isotope/imagesloaded.pkgd.min.js"></script>
+    <script src="~/assetsHome/vendors/isotope/isotope-min.js"></script>
+    <script src="~/assetsHome/vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script src="~/assetsHome/js/jquery.ajaxchimp.min.js"></script>
+    <script src="~/assetsHome/js/mail-script.js"></script>
+    <script src="~/assetsHome/vendors/jquery-ui/jquery-ui.js"></script>
+    <script src="~/assetsHome/vendors/counter-up/jquery.waypoints.min.js"></script>
+    <script src="~/assetsHome/vendors/counter-up/jquery.counterup.js"></script>
+    <script src="~/assetsHome/js/theme.js"></script>
+</body>
+</html>

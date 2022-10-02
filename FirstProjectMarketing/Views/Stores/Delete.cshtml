@@ -1,0 +1,92 @@
+﻿@model FirstProjectMarketing.Models.Firststore
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<!-- Icons font CSS-->
+<link href="~/assetsCreatePage/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+<link href="~/assetsCreatePage/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+<!-- Font special for pages-->
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+<!-- Vendor CSS-->
+<link href="~/assetsCreatePage/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+<link href="~/assetsCreatePage/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+<!-- Main CSS-->
+<link href="~/assetsCreatePage/css/main.css" rel="stylesheet" media="all">
+<link href="~/css/site.css" rel="stylesheet" />
+
+<div class="page-wrapper p-b-100 font-poppins">
+    <div class="wrapper wrapper--w680">
+        <div class="card card-4">
+            <h2 class="card-header" style="text-align:center; background-color:#5350a2ad; margin:-1px; color:whitesmoke">Delete Store </h2>
+            <div class="card-body">
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="StoreId" />
+                    <div class="form-group">
+                        <label asp-for="StoreName" class="control-label"></label>
+                        <input asp-for="StoreName" class="input--style-4" readonly="readonly" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="StoreDiscription" class="control-label"></label>
+                        <input asp-for="StoreDiscription" class="input--style-4" readonly="readonly" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="StoreFloorNumber" class="control-label"></label>
+                        <input asp-for="StoreFloorNumber" class="input--style-4" readonly="readonly" />
+                    </div>
+                    <div class="form-group" style="text-align:center">
+                        <input type="submit" value="Delete" class="btn btn-outline-primary col-4" style="border-radius:25px" />
+                    </div>
+                </form>
+                <div class="p-t-15">
+                    <a asp-action="Index" class="btn btn-outline-primary">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Jquery JS-->
+<script src="~/assetsCreatePage/vendor/jquery/jquery.min.js"></script>
+<!-- Vendor JS-->
+<script src="~/assetsCreatePage/vendor/select2/select2.min.js"></script>
+<script src="~/assetsCreatePage/vendor/datepicker/moment.min.js"></script>
+<script src="~/assetsCreatePage/vendor/datepicker/daterangepicker.js"></script>
+
+@*<h1>Delete</h1>
+
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+    <h4>Firststore</h4>
+    <hr />
+    <dl class="row">
+    <dt class = "col-sm-2">
+    @Html.DisplayNameFor(model => model.StoreName)
+    </dt>
+    <dd class = "col-sm-10">
+    @Html.DisplayFor(model => model.StoreName)
+    </dd>
+    <dt class = "col-sm-2">
+    @Html.DisplayNameFor(model => model.StoreDiscription)
+    </dt>
+    <dd class = "col-sm-10">
+    @Html.DisplayFor(model => model.StoreDiscription)
+    </dd>
+    <dt class = "col-sm-2">
+    @Html.DisplayNameFor(model => model.StoreFloorNumber)
+    </dt>
+    <dd class = "col-sm-10">
+    @Html.DisplayFor(model => model.StoreFloorNumber)
+    </dd>
+    </dl>
+
+    <form asp-action="Delete">
+    <input type="hidden" asp-for="StoreId" />
+    <input type="submit" value="Delete" class="btn btn-danger" /> |
+    <a asp-action="Index">Back to List</a>
+    </form>
+    </div>*@

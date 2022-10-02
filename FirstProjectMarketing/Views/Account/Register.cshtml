@@ -1,0 +1,129 @@
+﻿@model FirstProjectMarketing.Global.UserLogin
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+<head>
+    <!-- Main CSS-->
+    <link href="~/assetsCreatePage/css/main.css" rel="stylesheet" media="all">
+    <link href="~/css/site.css" rel="stylesheet" />
+
+</head>
+
+<body style="overflow-x:hidden">
+    <section class="" style="background-image: url(/Images/ecommerce-2140604__340.jpg); background-repeat:no-repeat; background-size:100% 100%; background-position:center">
+        <div class="" style="height:450px!important">
+            <div style="height:130px; background-color:#6e6a6d8f; width:100%">
+            </div>
+        </div>
+    </section>
+    <div class="page-wrapper p-b-100 font-poppins" style="margin-top:75px">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <h2 class="card-header" style="text-align:center; background-color:#5350a2ad; margin:-1px; color:whitesmoke">Register Form</h2>
+                <div class="card-body">
+                    <form asp-action="Register" asp-controller="Account" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="row row-space">
+                            <div class="col-6">
+                                <div class="input-group">
+                                    <label class="label" asp-for="user.Firstname"></label>
+                                    <input class="input--style-4" type="text" asp-for="user.Firstname" required>
+                                    <span asp-validation-for="user.Firstname" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="input-group">
+                                    <label class="label" asp-for="user.Lastname"></label>
+                                    <input class="input--style-4" type="text" asp-for="user.Lastname" required>
+                                    <span asp-validation-for="user.Lastname" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row row-space">
+                            <div class="col-6">
+                                <div class="input-group">
+                                    <label class="label" asp-for="user.Username"></label>
+                                    <input class="input--style-4" type="text" asp-for="user.Username" required>
+                                    <span asp-validation-for="user.Username" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="input-group">
+                                    <label class="label" asp-for="user.Phone"></label>
+                                    <input class="input--style-4" type="text" asp-for="user.Phone" required>
+                                    <span asp-validation-for="user.Phone" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <label class="label" asp-for="user.Country"></label>
+                                    <input class="input--style-4" type="text" asp-for="user.Country" required>
+                                    <span asp-validation-for="user.Country" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <label class="label" asp-for="user.City"></label>
+                                    <input class="input--style-4" type="text" asp-for="user.City" required>
+                                    <span asp-validation-for="user.City" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <label class="label" asp-for="user.Street"></label>
+                                    <input class="input--style-4" type="text" asp-for="user.Street" required>
+                                    <span asp-validation-for="user.Street" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row row-space">
+                            <div class="col-6">
+                                <div class="input-group">
+                                    <label class="label">password</label>
+                                    <input class="input--style-4" asp-for="log.Password" type="password" required>
+                                    <span asp-validation-for="log.Password" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="input-group">
+                                    <label class="label">ConfirmPassword</label>
+                                    <input class="input--style-4" asp-for="log.ConfirmPassword" type="password" required>
+                                    <span asp-validation-for="log.ConfirmPassword" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                <img class="rounded-circle" width="150px" src="~/Images/userimageprofilenotfound.jpg" alt="No Image Found" />
+                                <label style="display: block;margin-left: 95px;margin-top: -30px;">
+                                    <i class="fa fa-2x fa-edit" style="cursor:pointer;color:indigo"></i>
+                                    <input class="btn--blue rounded-circle" style="display:none" asp-for="user.imgfile">
+                                    <span asp-validation-for="user.imgfile" class="text-danger"></span>
+                                </label>
+                            </div>
+
+
+                        </div>
+                        <div class="p-t-15" style="text-align:center">
+                            <input class="btn btn-outline-primary col-4" type="submit" style="border-radius:25px!important" />
+                        </div>
+                    </form>
+
+                    <div class="p-t-15">
+                        <a asp-action="Index" asp-controller="Home" class="btn btn-outline-primary">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

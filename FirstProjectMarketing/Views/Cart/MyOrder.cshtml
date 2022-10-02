@@ -1,0 +1,103 @@
+﻿@model IEnumerable<FirstProjectMarketing.Models.Firstorderproduct>
+
+@{
+    ViewData["Title"] = "MyOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+<head>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+    <link href="~/css/site.css" rel="stylesheet" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+</head>
+
+<body style="overflow-x:hidden">
+    <section class="" style="background-image: url(/Images/ecommerce-2140604__340.jpg); background-repeat:no-repeat; background-size:100% 100%; background-position:center">
+        <div class="" style="height:450px!important">
+            <div style="height:130px; background-color:#6e6a6d8f; width:100%">
+            </div>
+        </div>
+    </section>
+
+
+
+    <div class="container-fluid" style="margin-top: 50px;">
+        <div class="card">
+            <!-- /.card-header -->
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h2 class="m-0 font-weight-bold text-primary">My Order</h2>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Image
+                                    </th>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Dicription
+                                    </th>
+                                    <th>
+                                        Quantity
+                                    </th>
+                                    <th>
+                                        Price
+                                    </th>
+                                    <th>
+                                        Total Price
+                                    </th>
+                                    <th>
+                                        OrderPaydate
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <img class="rounded-circle" width="75px" height="75px" src="~/Images/imgProduct/@item.Product.ProductImage1" alt="No Image Found" />
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Product.ProductName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Product.ProductDicription)
+                                        </td>
+                                        <td>
+                                            @Convert.ToInt32(item.Quantity)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Product.ProductPrice)
+                                        </td>
+                                        <td>
+                                            @(item.Quantity * item.Product.ProductPrice)
+                                        </td>
+                                        <td>
+                                            @item.Order.OrderPaydate.Value.ToShortDateString()
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

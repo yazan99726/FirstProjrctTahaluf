@@ -1,0 +1,122 @@
+﻿@model FirstProjectMarketing.Models.Firsthome
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+
+
+
+<!-- Icons font CSS-->
+<link href="~/assetsCreatePage/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+<link href="~/assetsCreatePage/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+<!-- Font special for pages-->
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+<!-- Vendor CSS-->
+<link href="~/assetsCreatePage/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+<link href="~/assetsCreatePage/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+<!-- Main CSS-->
+<link href="~/assetsCreatePage/css/main.css" rel="stylesheet" media="all">
+<link href="~/css/site.css" rel="stylesheet" />
+
+<div class="page-wrapper p-b-100 font-poppins">
+    <div class="wrapper wrapper--w680">
+        <div class="card card-4">
+            <h2 class="card-header" style="text-align:center; background-color:#5350a2ad; margin:-1px; color:whitesmoke">Create</h2>
+            <div class="card-body">
+                <form asp-action="Create" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row row-space">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <label class="label" asp-for="Projectname">Project Name</label>
+                                <input class="input--style-4" type="text" asp-for="Projectname" required>
+                                <span asp-validation-for="Projectname" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-space">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <label class="label" asp-for="Discription">Discription</label>
+                                <input class="input--style-4" type="text" asp-for="Discription" required>
+                                <span asp-validation-for="Discription" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-space">
+                        <div class="col-6">
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                <img class="rounded-circle" width="150px" src="~/Images/d7c1af95-44b1-47f4-93f7-040abc9eec94_user image profile notfound.jpg" alt="No Image Found" />
+                                <label style="display: block;margin-left: 95px;margin-top: -30px;">
+                                    <i class="fa fa-2x fa-edit" style="cursor:pointer;color:indigo"></i>
+                                    <input class="btn--blue rounded-circle" style="display:none" asp-for="imgfile">
+                                    <span asp-validation-for="imgfile" class="text-danger"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <div class="p-t-15" style="text-align:center">
+                        <input type="submit" value="Create" class="btn btn-outline-primary col-4" style="border-radius:25px" />
+                    </div>
+                </form>
+                <div class="p-t-15">
+                    <a asp-action="Index" type="button" class="btn btn-outline-primary">Back to list</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- Jquery JS-->
+<script src="~/assetsCreatePage/vendor/jquery/jquery.min.js"></script>
+<!-- Vendor JS-->
+<script src="~/assetsCreatePage/vendor/select2/select2.min.js"></script>
+<script src="~/assetsCreatePage/vendor/datepicker/moment.min.js"></script>
+<script src="~/assetsCreatePage/vendor/datepicker/daterangepicker.js"></script>
+
+
+
+
+
+@*<h1>Create</h1>
+
+<h4>Firsthome</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Projectname" class="control-label"></label>
+                <input asp-for="Projectname" class="form-control" />
+                <span asp-validation-for="Projectname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="imgfile" class="control-label"></label>
+                <input asp-for="imgfile" class="form-control" />
+                <span asp-validation-for="imgfile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Discription" class="control-label"></label>
+                <input asp-for="Discription" class="form-control" />
+                <span asp-validation-for="Discription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
+

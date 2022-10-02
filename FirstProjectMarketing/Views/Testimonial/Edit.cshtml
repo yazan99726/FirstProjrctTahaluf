@@ -1,0 +1,94 @@
+﻿@model FirstProjectMarketing.Models.Firsttestimonial
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+
+<!-- Main CSS-->
+<link href="~/assetsCreatePage/css/main.css" rel="stylesheet" media="all">
+<link href="~/css/site.css" rel="stylesheet" />
+
+
+<div class="page-wrapper p-b-100 font-poppins" style="margin-top: 75px">
+    <div class="wrapper wrapper--w680">
+        <div class="card card-4">
+            <h2 class="card-header" style="text-align:center; background-color:#5350a2ad; margin:-1px; color:whitesmoke">Edit Testimonial</h2>
+            <div class="card-body">
+                <form asp-action="Edit" asp-controller="Testimonial">
+                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row row-space">
+                        <div class="col-6">
+                            <div class="input-group">
+                                <label class="label" >First Name</label>
+                                <input class="input--style-4" type="text" value="@Model.User.Firstname" required>
+                                <span  class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="input-group">
+                                <label class="label" >Last Name</label>
+                                <input class="input--style-4" type="text"me" value="@Model.User.Lastname" required>
+                                <span  class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row row-space">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <label class="label" >Email</label>
+                                <input class="input--style-4" type="text" value="@Model.User.Username" required>
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-space">
+                    <div class="col-12">
+                            <div class="input-group">
+                                <label class="label" asp-for="Discription"></label>
+                                <textarea class="input--style-4" style="width:100%" asp-for="Discription" required></textarea>
+                                <span asp-validation-for="Discription" class="text-danger"></span>
+                            </div>
+                        </div>
+                     </div>
+                    <div class="row row-space">
+                        <div class="col-6">
+                           <div class="form-group">
+				                <label>Rating Select</label>
+                                <select asp-for="Rating"  style="border: 3px solid #ccc;" placeholder="Your Name" required>
+                                    <option value="1">One Stars</option>
+                                    <option value="2">Two Stars</option>
+                                    <option value="3">Three Stars</option>
+                                    <option value="4">Foure Stars</option>
+                                    <option value="5">Five Stars</option>
+                                </select>
+                           </div>
+                        </div>
+                        <div class="col-6">
+                           <div class="form-group">
+				               <label class="label" asp-for="Status"></label>
+                                <input type="text" class="input--style-4" style="width:100%" asp-for="Status" required />
+                                <span asp-validation-for="Status" class="text-danger"></span>
+                                
+                           </div>
+                        </div>
+                    </div>
+                        
+
+
+
+                    <div class="p-t-15" style="text-align:center">
+                        <input class="btn btn-outline-primary col-4" type="submit" style="border-radius:25px!important" />
+                    </div>
+                </form>
+                <div class="p-t-15">
+                        <a asp-action="Index" class="btn btn-outline-primary">Back to List</a>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

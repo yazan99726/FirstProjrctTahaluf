@@ -1,0 +1,91 @@
+﻿@model FirstProjectMarketing.Models.Firstaboutu
+
+@{
+    ViewData["Title"] = "aboutUs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+    <head>
+        <link href="~/css/site.css" rel="stylesheet"/>
+    </head>
+    <body style="background-color:#d4ced0">
+             <section class="">
+    
+        <div style="height:130px; background-color:#6e6a6d8f; width:100%">
+        </div>
+    
+</section>
+
+<section class="arrival_section">
+         <div class="container-fluid" style="padding:0!important; margin:90px 0">
+            <div class="box">
+               <div class="arrival_bg_box">
+                  <img src="~/Images/arrival-bg.jpg" alt="">
+               </div>
+               <div class="row">
+                  <div class="col-md-6 ml-auto">
+                     <div class="heading_container remove_line_bt">
+                        <h2>
+                           #NewArrivals
+                        </h2>
+                     </div>
+                     <p style="margin-top: 20px;margin-bottom: 30px;">
+                         @Model.Discription
+                     </p>
+                     <a asp-action="AllProduct" asp-controller="ShopProduct">
+                     Shop Now
+                     </a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+    </body>
+</html>
+
+
+
+
+
+@*<section class="">
+   
+        <div class="col-12" style="padding: 0!important;" >
+            <img src="~/Images/arrival-bg.jpg" alt="">
+        </div>
+        <div class="col-6">
+            <p style="margin-top: 20px;margin-bottom: 30px;">
+                        @Model.Discription
+                     </p>
+                     <a href="">
+                     Shop Now
+                     </a>
+        </div>
+ 
+
+
+
+
+
+        <div class="container">
+            <div class="box">
+               <div class="arrival_bg_box">
+                  <img src="~/Images/arrival-bg.jpg" alt="">
+               </div>
+               <div class="row">
+                  <div class="col-md-6 ml-auto">
+                     <div class="heading_container remove_line_bt">
+                        <h2>
+                           #SortPrice
+                        </h2>
+                     </div>
+                     <p style="margin-top: 20px;margin-bottom: 30px;">
+                        @Model.Discription
+                     </p>
+                     <a href="">
+                     Shop Now
+                     </a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>*@

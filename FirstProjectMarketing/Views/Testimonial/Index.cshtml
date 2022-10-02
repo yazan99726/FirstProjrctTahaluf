@@ -1,0 +1,133 @@
+﻿@model IEnumerable<FirstProjectMarketing.Models.Firsttestimonial>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+ <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+
+ <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+<link href="~/css/site.css" rel="stylesheet" />
+
+
+<div class="container-fluid">
+<div class="card">
+              <!-- /.card-header -->
+
+              <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h2 class="m-0 font-weight-bold text-primary">Testimonial Table</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th> Username</th>
+                    <th>Phone</th>
+                    <th>Discription</th>
+                    <th>Rating</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+                  </thead>
+                  <tbody>
+                      @foreach (var item in Model)
+                     {
+                         <tr>
+                    <td>@item.User.Username</td>
+                    <td>@item.User.Phone</td>
+                    <td>@item.Discription</td>
+                    <td>@item.Rating</td>
+                    <td>@item.Status</td>
+                    <td style="width:15%">
+                        <a class="btn btn-info btn-sm rounded-10" asp-action="Details" asp-route-id="@item.Id" data-toggle="tooltip" data-placement="top" title="Edit" style="width:30px">
+                            <i class="fa fa-info"></i>
+                        </a>
+                         <a class="btn btn-danger btn-sm rounded-10"  asp-action="Delete" asp-route-id="@item.Id" data-toggle="tooltip" data-placement="top" title="Delete" style="width:30px">
+                             <i class="fa fa-trash"></i>
+                         </a>
+                    </td>
+                  </tr>
+                     }
+                  </tbody>
+                  @*<tfoot>
+                  <tr>
+                    <th>Rendering engine</th>
+                    <th>Browser</th>
+                    <th>Platform(s)</th>
+                    <th>Engine version</th>
+                    <th>CSS grade</th>
+                  </tr>
+                  </tfoot>*@
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+      </div>
+      </div>
+      </div>
+
+
+
+
+
+         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+
+@*<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Discription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Firstname)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>*@

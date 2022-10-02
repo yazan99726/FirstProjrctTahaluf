@@ -1,0 +1,481 @@
+﻿@model Tuple<IEnumerable<FirstProjectMarketing.Models.Firsthomeimage>
+, IEnumerable<FirstProjectMarketing.Models.Firstproduct>
+,IEnumerable<FirstProjectMarketing.Models.Firstdiscount>
+,IEnumerable<FirstProjectMarketing.Models.Firsttestimonial>>
+    @using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    var testimonial = @Model.Item4.Last();
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="~/assetsHome/css/bootstrap.css" />
+<link rel="stylesheet" href="~/assetsHome/vendors/linericon/style.css" />
+<link rel="stylesheet" href="~/assetsHome/css/font-awesome.min.css" />
+<link rel="stylesheet" href="~/assetsHome/css/themify-icons.css" />
+<link rel="stylesheet" href="~/assetsHome/css/flaticon.css" />
+<link rel="stylesheet" href="~/assetsHome/vendors/owl-carousel/owl.carousel.min.css" />
+<link rel="stylesheet" href="~/assetsHome/vendors/lightbox/simpleLightbox.css" />
+<link rel="stylesheet" href="~/assetsHome/vendors/nice-select/css/nice-select.css" />
+<link rel="stylesheet" href="~/assetsHome/vendors/animate-css/animate.css" />
+<link rel="stylesheet" href="~/assetsHome/vendors/jquery-ui/jquery-ui.css" />
+<!-- main css -->
+<link rel="stylesheet" href="~/assetsHome/css/style.css" />
+<link rel="stylesheet" href="~/assetsHome/css/responsive.css" />
+
+<!-- bootstrap core css -->
+<link rel="stylesheet" type="text/css" href="~/assetsHome/Testimonial/css/bootstrap.css" />
+<!-- font awesome style -->
+<link href="~/assetsHome/Testimonial/css/font-awesome.min.css" rel="stylesheet" />
+<!-- Custom styles for this template -->
+<link href="~/assetsHome/Testimonial/css/style.css" rel="stylesheet" />
+<!-- responsive style -->
+<link href="~/assetsHome/Testimonial/css/responsive.css" rel="stylesheet" />
+
+<!-- ##### Hero Area Start ##### -->
+@*    @if (ViewBag.Message == null)
+    {
+    <script type="text/javascript">
+    window.onload = function () {
+    alert("Please log in first");
+    };
+    </script>
+    }*@
+<section class="hero-area">
+    <div class="hero-post-slides owl-carousel">
+
+        <!-- Single Hero Post -->
+        @foreach (var item in Model.Item1)
+        {
+            <div class="single-hero-post bg-overlay">
+                <!-- Post Image -->
+            <div class="slide-img bg-img" style="background-image: url(/Images/imgHome/@item.Image);"></div>
+
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12">
+                            <!-- Post Content -->
+                        <div class="hero-slides-content text-center">
+                                <h2>@HttpContextAccessor.HttpContext.Session.GetString("AppDiscription")</h2>
+                                @*<p>@HttpContextAccessor.HttpContext.Session.GetString("AppDiscription").</p>*@
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+<!-- ##### Hero Area End ##### -->
+<!-- Start feature Area -->
+<section class="feature-area section_gap_bottom_custom">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="single-feature">
+                    <a href="#" class="title">
+                        <i class="flaticon-money"></i>
+                        <h3>Money back gurantee</h3>
+                    </a>
+                    <p>Shall open divide a one</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="single-feature">
+                    <a href="#" class="title">
+                        <i class="flaticon-truck"></i>
+                        <h3>Free Delivery</h3>
+                    </a>
+                    <p>Shall open divide a one</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="single-feature">
+                    <a href="#" class="title">
+                        <i class="flaticon-support"></i>
+                        <h3>Alway support</h3>
+                    </a>
+                    <p>Shall open divide a one</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="single-feature">
+                    <a href="#" class="title">
+                        <i class="flaticon-blockchain"></i>
+                        <h3>Secure payment</h3>
+                    </a>
+                    <p>Shall open divide a one</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End feature Area -->
+<!--================ Feature Product Area ================= -->
+<section class="feature_product_area section_gap_bottom_custom">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="main_title">
+                    <h2><span>Featured product</span></h2>
+                    <p>Bring called seed first of third give itself now ment</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            @for (var i = 0; i < 3; i++)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-product">
+                        <div class="product-img-my">
+                            <img class="img-fluid w-100" style="height:350px" src="~/Images/imgProduct/@Model.Item3.ElementAt(i).Product.ProductImage1" alt="" />
+                            <div class="p_icon">
+                                <a asp-action="DetailsProduct" asp-controller="ShopProduct" asp-route-id="@Model.Item3.ElementAt(i).Productid">
+                                    <i class="ti-eye"></i>
+                                </a>
+                                <a onclick="WishList(@Model.Item3.ElementAt(i).Productid)">
+                                    <i class="ti-heart"></i>
+                                </a>
+                                <a onclick="AjaxFormSubmit(@Model.Item3.ElementAt(i).Productid)">
+                                    <i class="ti-shopping-cart"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="product-btm">
+                            <a href="#" class="d-block">
+                                <h4>@Model.Item3.ElementAt(i).Product.ProductName</h4>
+                                <h4>@Model.Item3.ElementAt(i).Product.ProductDicription</h4>
+                                <h4>@Model.Item3.ElementAt(i).Product.ProductId</h4>
+                            </a>
+                            <div class="mt-3">
+                                <span class="mr-4">$@(Model.Item3.ElementAt(i).Product.ProductPrice - (@Model.Item3.ElementAt(i).Product.ProductPrice * (@Model.Item3.ElementAt(i).DiscountPercentage * Convert.ToDecimal(0.01))))</span>
+
+                                <del>$@Model.Item3.ElementAt(i).Product.ProductPrice</del>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+
+        </div>
+    </div>
+</section>
+<!--================ End Feature Product Area =================-->
+<!--================ Offer Area =================-->
+
+<section style="background-color: #f6f6f6" class="col-12">
+    <div>
+        <div class="col-lg-5 mt-5 mt-lg-0" style="display:inline-flex; padding-bottom:10px; padding-top:30px">
+            <img class="img-fluid" src="~/Images/imgProduct/@Model.Item3.Last().Product.ProductImage1" alt="" />
+        </div>
+        <div class="col-lg-6 text-center" style="display:inline-block; padding-bottom:10px">
+             <div class="offer_content">
+            <h3 class="text-uppercase mb-40">@Model.Item3.Last().Product.ProductName</h3>
+            <h2 class="text-uppercase">%@Model.Item3.Last().DiscountPercentage off</h2>
+            <a href="#" class="main_btn mb-20 mt-5">Discover Now</a>
+            <p>@Model.Item3.Last().DiscountEnddate.ToShortDateString() Limited Time Offer</p>
+          </div>
+        </div>
+    </div>
+</section>
+@*  <section class="offer_area" style="background-color: #f6f6f6;">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="offset-lg-4 col-lg-6 text-center">
+          <div class="offer_content">
+            <h3 class="text-uppercase mb-40">all men’s collection</h3>
+            <h2 class="text-uppercase">50% off</h2>
+            <a href="#" class="main_btn mb-20 mt-5">Discover Now</a>
+            <p>Limited Time Offer</p>
+          </div>
+        </div>
+      </div>
+    </div>
+   </section>   *@
+ 
+<!--================ End Offer Area =================-->
+<!--================ New Product Area =================-->
+<section class="new_product_area section_gap_top section_gap_bottom_custom">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="main_title">
+                    <h2><span>new products</span></h2>
+                    <p>Bring called seed first of third give itself now ment</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-6">
+                <div class="new_product">
+                    <h5 class="text-uppercase">collection of 2019</h5>
+                    <h3 class="text-uppercase">@Model.Item2.SingleOrDefault(x=>x.ProductId==Model.Item2.Max(id=>id.ProductId)).ProductName</h3>
+                    <div class="product-img-my">
+                        <img class="img-fluid" src="~/Images/imgProduct/@Model.Item2.SingleOrDefault(x=>x.ProductId==Model.Item2.Max(id=>id.ProductId)).ProductImage1" alt="" />
+                    </div>
+                    <h4>$@Model.Item2.SingleOrDefault(x=>x.ProductId==Model.Item2.Max(id=>id.ProductId)).ProductPrice</h4>
+                    <a onclick="AjaxFormSubmit(@Model.Item2.SingleOrDefault(x=>x.ProductId==Model.Item2.Max(id=>id.ProductId)).ProductId)" class="main_btn">Add to cart</a>
+                </div>
+            </div>
+
+
+
+
+            <div class="col-lg-6 mt-5 mt-lg-0">
+                <div class="row">
+                    @for (int i = Model.Item2.Count()-1; i >=Model.Item2.Count()-4; i--)
+                    {
+                        <div class="col-lg-6 col-md-6">
+                            <div class="single-product">
+                                <div class="product-img-my">
+                                    <img class="img-fluid w-100" src="~/Images/imgProduct/@Model.Item2.ElementAt(i).ProductImage1" style="width:150px; height:215px" alt="" />
+                                    <div class="p_icon">
+                                        <a asp-action="DetailsProduct" asp-controller="ShopProduct" asp-route-id="@Model.Item2.ElementAt(i).ProductId">
+                                            <i class="ti-eye"></i>
+                                        </a>
+                                        <a onclick="WishList(@Model.Item2.ElementAt(i).ProductId)">
+                                            <i class="ti-heart"></i>
+                                        </a>
+                                        <a onclick="AjaxFormSubmit(@Model.Item2.ElementAt(i).ProductId)">
+                                            <i class="ti-shopping-cart"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="product-btm">
+                                    <a href="#" class="d-block">
+                                        <h2>@Model.Item2.ElementAt(i).ProductName</h2>
+                                        <h4>@Model.Item2.ElementAt(i).ProductDicription</h4>
+                                    </a>
+                                    <div class="mt-3">
+                                        <span class="mr-4">$@Model.Item2.ElementAt(i).ProductPrice</span>
+                                        <del>$35.00</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================ End New Product Area =================-->
+<!--================ Inspired Product Area =================-->
+<section class="inspired_product_area section_gap_bottom_custom">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="main_title">
+                    <h2><span>Inspired products</span></h2>
+                    <p>Bring called seed first of third give itself now ment</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            @for (var i = Model.Item2.Count()-1; i >=0 ; i--)
+            {
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-product">
+                        <div class="product-img-my">
+                            <img class="img-fluid w-100" style="height:250px" src="~/Images/imgProduct/@Model.Item2.ElementAt(i).ProductImage1" alt="" />
+                            <div class="p_icon">
+                                <a asp-action="DetailsProduct" asp-controller="ShopProduct" asp-route-id="@Model.Item2.ElementAt(i).ProductId">
+                                    <i class="ti-eye"></i>
+                                </a>
+                                <a onclick="WishList(@Model.Item2.ElementAt(i).ProductId)">
+                                    <i class="ti-heart"></i>
+                                </a>
+                                <a onclick="AjaxFormSubmit(@Model.Item2.ElementAt(i).ProductId)">
+                                    <i class="ti-shopping-cart"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="product-btm">
+                            <a href="#" class="d-block">
+                                <h4>@Model.Item2.ElementAt(i).ProductName</h4>
+                            </a>
+                            <a href="#" class="d-block">
+                                <h4>@Model.Item2.ElementAt(i).ProductDicription</h4>
+                            </a>
+                            <div class="mt-3">
+                                <span class="mr-4">$@Model.Item2.ElementAt(i).ProductPrice</span>
+                                <del>$@Model.Item2.ElementAt(i).ProductPrice</del>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+</section>
+<!--================ End Inspired Product Area =================-->
+<!--================ testimonial ======================-->
+<!-- client section -->
+<section class="client_section layout_padding" style="height:600px">
+    <div class="container">
+        <div class="heading_container heading_center">
+            <h2>
+                Customer's Testimonial
+            </h2>
+        </div>
+        <div id="carouselExample3Controls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner ">
+                <div class="carousel-item active">
+                    <div class="box col-lg-10 mx-auto">
+                            <div class="img_container">
+                                <div class="img-box">
+                                    <div class="img_box-inner">
+                                        <img src="~/Images/imgUsers/@testimonial.User.Image" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="detail-box">
+                                <h5>
+                                    @testimonial.User.Firstname @testimonial.User.Lastname
+                                </h5>
+                                <div class="classynav">
+                                    <ul class="list">
+                                        @for (var i = 0; i < testimonial.Rating; i++)
+                                        {
+                                             <li>
+                                    <a>
+                                        <i class="fa fa-star"></i>
+                                    </a>
+                                </li>
+                                        }
+                               
+                                
+                            </ul>
+                                    
+                                </div>
+                                <p>
+                                    @testimonial.Discription
+                                </p>
+                            </div>
+                        </div>
+                </div>
+                @foreach (var item in Model.Item4)
+                {
+                    <div class="carousel-item">
+                        <div class="box col-lg-10 mx-auto">
+                            <div class="img_container">
+                                <div class="img-box">
+                                    <div class="img_box-inner">
+                                        <img src="~/Images/imgUsers/@item.User.Image" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="detail-box">
+                                <h5>
+                                    @item.User.Firstname @item.User.Lastname
+                                </h5>
+                                <div class="classynav">
+                                    <ul class="list">
+                                        @for (var i = 0; i < item.Rating; i++)
+                                        {
+                                             <li>
+                                    <a href="#">
+                                        <i class="fa fa-star"></i>
+                                    </a>
+                                </li>
+                                        }
+                               
+                                
+                            </ul>
+                                    
+                                </div>
+                                <p>
+                                    @item.Discription
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+
+                @*                <div class="carousel-item">
+                    <div class="box col-lg-10 mx-auto">
+                    <div class="img_container">
+                    <div class="img-box">
+                    <div class="img_box-inner">
+                    <img src="~/assetsHome/Testimonial/images/client.jpg" alt="">
+                    </div>
+                    </div>
+                    </div>
+                    <div class="detail-box">
+                    <h5>
+                    Anna Trevor
+                    </h5>
+                    <h6>
+                    Customer
+                    </h6>
+                    <p>
+                    Dignissimos reprehenderit repellendus nobis error quibusdam? Atque animi sint unde quis reprehenderit, et, perspiciatis, debitis totam est deserunt eius officiis ipsum ducimus ad labore modi voluptatibus accusantium sapiente nam! Quaerat.
+                    </p>
+                    </div>
+                    </div>
+                    </div>
+
+                    <div class="carousel-item">
+                    <div class="box col-lg-10 mx-auto">
+                    <div class="img_container">
+                    <div class="img-box">
+                    <div class="img_box-inner">
+                    <img src="~/assetsHome/Testimonial/images/client.jpg" alt="">
+                    </div>
+                    </div>
+                    </div>
+                    <div class="detail-box">
+                    <h5>
+                    Anna Trevor
+                    </h5>
+                    <h6>
+                    Customer
+                    </h6>
+                    <p>
+                    Dignissimos reprehenderit repellendus nobis error quibusdam? Atque animi sint unde quis reprehenderit, et, perspiciatis, debitis totam est deserunt eius officiis ipsum ducimus ad labore modi voluptatibus accusantium sapiente nam! Quaerat.
+                    </p>
+                    </div>
+                    </div>
+                    </div>*@
+
+            </div>
+            <div class="carousel_btn_box">
+                <a class="carousel-control-prev" href="#carouselExample3Controls" data-slide="prev">
+                    <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExample3Controls" role="button" data-slide="next">
+                    <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+@*end client section *@
+
+<!-- jQery -->
+<script src="~/assetsHome/Testimonial/js/jquery-3.4.1.min.js"></script>
+<!-- popper js -->
+<script src="~/assetsHome/Testimonial/js/popper.min.js"></script>
+<!-- bootstrap js -->
+<script src="~/assetsHome/Testimonial/js/bootstrap.js"></script>
+<!-- custom js -->
+<script src="~/assetsHome/Testimonial/js/custom.js"></script>
+<script src="~/js/site.js"></script>

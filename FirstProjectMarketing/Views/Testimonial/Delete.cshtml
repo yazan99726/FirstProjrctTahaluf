@@ -1,0 +1,90 @@
+﻿@model FirstProjectMarketing.Models.Firsttestimonial
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<!-- Main CSS-->
+<link href="~/assetsCreatePage/css/main.css" rel="stylesheet" media="all">
+<link href="~/css/site.css" rel="stylesheet" />
+
+
+<div class="page-wrapper p-b-100 font-poppins" style="margin-top: 75px">
+    <div class="wrapper wrapper--w680">
+        <div class="card card-4">
+            <h2 class="card-header" style="text-align:center; background-color:#5350a2ad; margin:-1px; color:whitesmoke">Delete Testimonial</h2>
+            <div class="card-body">
+                <form asp-action="Delete" asp-controller="Testimonial">
+                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row row-space">
+                        <div class="col-6">
+                            <div class="input-group">
+                                <label class="label" >First Name</label>
+                                <input class="input--style-4" type="text" value="@Model.User.Firstname" readonly="readonly">
+                                <span  class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="input-group">
+                                <label class="label" >Last Name</label>
+                                <input class="input--style-4" type="text"me" value="@Model.User.Lastname" readonly="readonly">
+                                <span  class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row row-space">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <label class="label" >Email</label>
+                                <input class="input--style-4" type="text" value="@Model.User.Username" readonly="readonly">
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-space">
+                    <div class="col-12">
+                            <div class="input-group">
+                                <label class="label" asp-for="Discription"></label>
+                                <textarea class="input--style-4" style="width:100%" asp-for="Discription" readonly="readonly"></textarea>
+                                <span asp-validation-for="Discription" class="text-danger"></span>
+                            </div>
+                        </div>
+                     </div>
+                    <div class="row row-space">
+                        <div class="col-6">
+                           <div class="form-group">
+				                <label>Rating</label>
+                                 <ul class="list row">
+                                    @for (var i = 0; i < Model.Rating; i++)
+                                    {
+                                         <li style="margin-left:5px; color:#fbb606"><a><i class="fa fa-star"></i></a></li>
+                                    }                                                
+                                 </ul>
+                           </div>
+                        </div>
+                        <div class="col-6">
+                           <div class="form-group">
+				               <label class="label" asp-for="Status"></label>
+                                <input type="text" class="input--style-4" style="width:100%" asp-for="Status" readonly="readonly" />
+                                <span asp-validation-for="Status" class="text-danger"></span>
+                                
+                           </div>
+                        </div>
+                    </div>
+                        
+
+
+
+                    <div class="p-t-15" style="text-align:center">
+                        <input class="btn btn-outline-primary col-4" type="submit" style="border-radius:25px!important" />
+                    </div>
+                </form>
+                <div class="p-t-15">
+                        <a asp-action="Index" class="btn btn-outline-primary">Back to List</a>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

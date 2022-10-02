@@ -1,0 +1,151 @@
+﻿@model FirstProjectMarketing.Models.Firstproduct
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<!-- Icons font CSS-->
+<link href="~/assetsCreatePage/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+<link href="~/assetsCreatePage/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+<!-- Font special for pages-->
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+<!-- Vendor CSS-->
+<link href="~/assetsCreatePage/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+<link href="~/assetsCreatePage/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+<!-- Main CSS-->
+<link href="~/assetsCreatePage/css/main.css" rel="stylesheet" media="all">
+<link href="~/css/site.css" rel="stylesheet" />
+
+<div class="page-wrapper p-b-100 font-poppins">
+    <div class="wrapper wrapper--w680">
+        <div class="card card-4">
+            <h2 class="card-header" style="text-align:center; background-color:#5350a2ad; margin:-1px; color:whitesmoke">Edit Product</h2>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="ProductId" />
+
+                    <div class="row row-space">
+                        <div class="col-6">
+                            <div class="input-group">
+                                <label asp-for="ProductName" class="label">Name</label>
+                                <input asp-for="ProductName" class="input--style-4" required />
+                                <span asp-validation-for="ProductName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="input-group">
+                                <label asp-for="ProductDicription" class="label">Dicription</label>
+                                <input asp-for="ProductDicription" class="input--style-4" required />
+                                <span asp-validation-for="ProductDicription" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-space">
+                        <div class="col-4">
+                            <div class="input-group">
+                                <label asp-for="ProductPrice" class="label">Price</label>
+                                <input asp-for="ProductPrice" class="input--style-4" required />
+                                <span asp-validation-for="ProductPrice" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="input-group">
+                                <label asp-for="ProductWholesaleprice" class="label">Wholesale</label>
+                                <input asp-for="ProductWholesaleprice" class="input--style-4" required />
+                                <span asp-validation-for="ProductWholesaleprice" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="input-group">
+                                <label asp-for="ProductQuantity" class="label">Quantity</label>
+                                <input asp-for="ProductQuantity" class="input--style-4" required />
+                                <span asp-validation-for="ProductQuantity" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-space">
+                        <div class="col-4">
+                            <div class="input-group">
+                                <div class="rs-select2 js-select-simple select--no-search">
+                                    <img class="rounded-circle" width="150px" height="150px" src="~/Images/imgProduct/@Model.ProductImage1" alt="No Image Found" />
+                                    <label style="display: block;margin-left: 95px;margin-top: -30px;">
+                                        <i class="fa fa-2x fa-edit" style="cursor:pointer;color:indigo"></i>
+                                        <input class="btn--blue rounded-circle" style="display:none" asp-for="imgfile1" >
+                                        <span asp-validation-for="imgfile1" class="text-danger"></span>
+                                    </label>
+                                    <input class="input--style-4" type="text" style="display:none" asp-for="@Model.ProductImage1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="input-group">
+                                <div class="rs-select2 js-select-simple select--no-search">
+                                    <img class="rounded-circle" width="150px" height="150px" src="~/Images/imgProduct/@Model.ProductImage2" alt="No Image Found" />
+                                    <label style="display: block;margin-left: 95px;margin-top: -30px;">
+                                        <i class="fa fa-2x fa-edit" style="cursor:pointer;color:indigo"></i>
+                                        <input class="btn--blue rounded-circle" style="display:none" asp-for="imgfile2" >
+                                        <span asp-validation-for="imgfile2" class="text-danger"></span>
+                                    </label>
+                                    <input class="input--style-4" type="text" style="display:none" asp-for="@Model.ProductImage2">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="input-group">
+                                <div class="rs-select2 js-select-simple select--no-search">
+                                    <img class="rounded-circle" width="150px" height="150px" src="~/Images/imgProduct/@Model.ProductImage3" alt="No Image Found" />
+                                    <label style="display: block;margin-left: 95px;margin-top: -30px;">
+                                        <i class="fa fa-2x fa-edit" style="cursor:pointer;color:indigo"></i>
+                                        <input class="btn--blue rounded-circle" style="display:none" asp-for="imgfile3" >
+                                        <span asp-validation-for="imgfile3" class="text-danger"></span>
+                                    </label>
+                                    <input class="input--style-4" type="text" style="display:none" asp-for="@Model.ProductImage3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row row-space">
+                        <div class="col-7">
+                            <div class="input-group" style="justify-content:space-around">
+                                <label class="label">Catigory Name</label>
+                                <select asp-for="CatigoryId" class="input--style-4" asp-items="ViewBag.CatigoryId" required>
+                                    @* <option value="@Model.Catigory.CatigoryName">yazan</option>*@
+                                </select>
+                                <span asp-validation-for="CatigoryId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-t-15" style="text-align:center">
+                        <input class="btn btn-outline-primary col-4" type="submit" asp-action="Edit" asp-controller="Product" style="border-radius:25px!important" />
+                    </div>
+                    <div class="p-t-15">
+                        <a asp-action="Index" class="btn btn-outline-primary">Back to List</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Jquery JS-->
+<script src="~/assetsCreatePage/vendor/jquery/jquery.min.js"></script>
+<!-- Vendor JS-->
+<script src="~/assetsCreatePage/vendor/select2/select2.min.js"></script>
+<script src="~/assetsCreatePage/vendor/datepicker/moment.min.js"></script>
+<script src="~/assetsCreatePage/vendor/datepicker/daterangepicker.js"></script>
+
+
+
+
+
+
+
+
