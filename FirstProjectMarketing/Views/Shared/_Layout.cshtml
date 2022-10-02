@@ -1,0 +1,510 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@using FirstProjectMarketing.Global
+
+@{
+    //DataConst dataConst = new DataConst();
+    //int cartNumber = dataConst.CartNumber;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SortPrice</title>
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.min.js"></script>
+    <!-- Favicon -->
+    <link rel="icon" href="~/assetsHeader/img/core-img/favicon.ico">
+    <link rel="icon" href="~/assetsHeader/css/animate.css">
+    <link rel="icon" href="~/assetsHeader/css/animate/animate.min.css">
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="~/assetsHeader/style.css">
+
+    <style>
+        .mycontact{
+            height: 50px;
+    width: 100% !important;
+    font-weight: 300;
+    background: rgba(255,255,255,0.15);
+    color: #ffffff;
+    padding-left: 20px;
+    border-radius: 18px;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: -30px;
+        }
+    </style>
+    
+</head>
+<body>
+
+     <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-circle"></div>
+        <div class="preloader-img">
+            <img src="~/Images/imgHome/logo.png" alt="yazan">
+        </div>
+    </div>
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+
+        <!-- ***** Top Header Area ***** -->
+        <div class="top-header-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="top-header-content d-flex align-items-center justify-content-between">
+                            <!-- Top Header Content -->
+                            <div class="top-header-meta">
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="yazantayem26@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Email: yazantayen26@gmail.com</span></a>
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="0786477653"><i class="fa fa-phone" aria-hidden="true"></i> <span>Call Us: 0786477653</span></a>
+                            </div>
+
+                            <!-- Top Header Content -->
+                            <div class="top-header-meta d-flex">
+                                
+                                <!-- Login -->
+                                <div class="login">
+                                    
+                                        <a style="font-size:20px"> 
+                                          
+                                          @HttpContextAccessor.HttpContext.Session.GetString("UserName")
+                                        </a>
+                                    
+                                  
+                                </div>
+                                <!-- Cart -->
+                                <div class="cart">
+                                    <a asp-action="MyCart" asp-controller="Cart"><i class="fa fa-shopping-cart" style="font-size:25px" aria-hidden="true"></i> <span style="height:20px; font-size:20px">Cart (<span class="cart-quantity" id="cartNum">@DataConst.CartNumber</span><span>)</span></span></a>
+                                    @Html.Raw(TempData["msgCart"])
+                                    @Html.Raw(TempData["msgCheckout"])
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+
+
+        <!-- ***** Navbar Area ***** -->
+        <div class="alazea-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="alazeaNav">
+
+                        <!-- Nav Brand -->
+                        <div class="row">
+                        <a asp-action="Index" asp-controller="Home" class="nav-brand">
+                            <img src="~/Images/imgHome/@HttpContextAccessor.HttpContext.Session.GetString("AppLogo")" width="50px" height="50px"/>
+                            
+                        </a>
+                        <a asp-action="Index" asp-controller="Home" style="font-size:25px; color:white; margin-left: -20px;">@HttpContextAccessor.HttpContext.Session.GetString("AppName") </a>
+                        </div>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Navbar Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a asp-action="Index" asp-controller="Home">Home</a></li>
+                                    <li><a href="#contact">Contact</a></li>
+                                    <li><a href="#">Pages</a>
+                                        <ul class="dropdown">
+                                            <li><a asp-action="Index" asp-controller="Home">Home</a></li>
+                                            <li><a asp-action="AboutUsForCustomer" asp-controller="AboutUs">About</a></li>
+                                            <li><a asp-action="AllProduct" asp-controller="ShopProduct">Shop</a>
+                                                <ul class="dropdown">
+                                                    <li><a asp-action="AllProduct" asp-controller="ShopProduct">Shop</a></li>
+                                                    <li><a asp-action="MyCart" asp-controller="Cart"> Cart</a></li>
+                                                    <li><a asp-action="Checkout" asp-controller="Cart">Checkout</a></li>
+                                                    <li><a asp-action="Create" asp-controller="Testimonial">Testimonial</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#contact">Contact</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a asp-action="AllProduct" asp-controller="ShopProduct">Shop</a></li>
+                                    
+                                    @if(@HttpContextAccessor.HttpContext.Session.GetInt32("UserId") == null)
+                                    {
+                                        <li id="btnLogin">
+                                        <a   data-toggle="modal" data-target="#myModal" asp-area="" >
+                                        <i class="fa fa-user" style="font-size:25px" aria-hidden="true"></i>
+                                        <span>Login</span>
+                                     </a> 
+                                     @Html.Raw(TempData["msglogin"])
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li><a asp-action="ProfileCustomer" asp-controller="Account">
+                                       <img class="rounded-circle" src="~/Images/imgUsers/@HttpContextAccessor.HttpContext.Session.GetString("UserImage")" style="width:45px" alt="No Image Found" />
+                                    </a>
+                                                <ul class="dropdown">
+                                                    <li><a asp-action="ProfileCustomer" asp-controller="Account">Profile</a></li>
+                                                    <li><a asp-action="MyCart" asp-controller="Cart" >Cart</a></li>
+                                                    <li><a asp-action="MyOrder" asp-controller="Cart" >Order</a></li>
+                                                    <li><a asp-action="Index" asp-controller="Favorite" >WishList</a></li>
+                                                    <li><a asp-action="Checkout" asp-controller="Cart">Checkout</a></li>
+                                                    <li>
+                                                        <a data-toggle="modal" data-target="#changePass" asp-area="" >
+                                                           <span>change Password</span>
+                                                        </a> 
+                                                        @Html.Raw(TempData["msg"])
+                                                    </li>
+                                                    <li><a asp-action="Logout" asp-controller="Account">Logout</a></li>
+                                                </ul>
+                                            </li>
+                                    }
+
+                                    
+                                   
+                                </ul>
+
+                                <!-- Search Icon -->
+                                @*<div id="searchIcon">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </div>*@
+
+                            </div>
+                            <!-- Navbar End -->
+                        </div>
+                    </nav>
+
+                    <!-- Search Form -->
+                    <div class="search-form">
+                        <form action="#" method="get">
+                            <input type="search" name="search" id="search" placeholder="Type keywords &amp; press enter...">
+                            <button type="submit" class="d-none"></button>
+                        </form>
+                        <!-- Close Icon -->
+                        <div class="closeIcon"><i class="fa fa-times" aria-hidden="true"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- ##### Header Area End ##### -->
+ <!--Login Popup Page-->
+    <div class="modal" id="myModal" role="dialog">
+        <div class="modal-dialog" style="padding-top:150px!important">
+            <div class="center-this">
+                <div class="modal-content" style="position: relative; width: 450px!important; height: 350px!important; background-color: rgba(0, 0, 0, 0.60) ">
+
+                    <!--Login Header-->
+                    <div class="modal-header" style="text-align:center">
+                        <h4 class="modal-title" style="width:100%!important; padding-top: 2px !important; text-align:center; color: whitesmoke; font-size: 25px!important"> Login </h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!--Login Body-->
+                    <div class="modal-body" style=" position: relative; width:100%; height:100%; top: 20px">
+                        <form class="form" method="post">
+
+                            <table>
+                                <tr class="form-group">
+                                    <td > <label style="color:whitesmoke">UserName</label></td>
+                                    <td>
+                                        <input id="logUserName" type="email"  name="userName" required class="form-control" />
+                                    </td>
+                                </tr>
+                                <tr class="form-group" style="margin-top: 15px !important; height: 50px!important ">
+                                    <td> <label style="color:whitesmoke">Password</label></td>
+                                    <td>
+                                        <input id="Password" type="password" name="password" required class="form-control" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input  type="submit" asp-controller="Account" asp-action="Login" value="Login" class="navButtons btn-login" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <a style="font-size:18px; color:white" asp-action="Register" asp-controller="Account">Register</a>                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--changepass Popup Page-->
+    <div class="modal" id="changePass" role="dialog">
+        <div class="modal-dialog" style="padding-top:150px!important">
+            <div class="center-this">
+                <div class="modal-content" style="position: relative; width: 450px!important; height: 350px!important; background-color: rgba(0, 0, 0, 0.60) ">
+
+                    <!--change Header-->
+                    <div class="modal-header" style="text-align:center">
+                        <h4 class="modal-title" style="width:100%!important; padding-top: 2px !important; text-align:center; color: whitesmoke; font-size: 25px!important">
+                            Change Password
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!--change Body-->
+                    <div class="modal-body" style=" position: relative; width:100%; height:100%; top: 20px">
+                        <form class="form" method="post">
+                            <table>
+                                <tr class="form-group">
+                                    <td > <label style="color:whitesmoke">Old Password</label></td>
+                                    <td>
+                                        <input id="logUserName" type="password"  name="oldPass" required class="form-control" />
+                                    </td>
+                                </tr>
+                                <tr class="form-group" style="margin-top: 15px !important; height: 50px!important ">
+                                    <td> <label style="color:whitesmoke">new Password</label></td>
+                                    <td>
+                                        <input id="Password" type="password" name="newPass" required class="form-control" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="submit" asp-controller="Account" asp-action="ChangePassword" value="Submit" class="navButtons btn-login" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+        <main role="main">
+            @RenderBody()
+        </main>
+    
+
+     <footer class="footer-area bg-img" >
+        <!-- Main Footer Area -->
+        <div class="main-footer-area">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Single Footer Widget -->
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="single-footer-widget">
+                            <div class="footer-logo mb-30">
+                                <a href="#"><img src="img/core-img/logo.png" alt=""></a>
+                            </div>
+                            <p>Lorem ipsum dolor sit samet, consectetur adipiscing elit. India situs atione mantor</p>
+                            <div class="social-info">
+                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Single Footer Widget -->
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="single-footer-widget">
+                            <div class="widget-title">
+                                <h5>QUICK LINK</h5>
+                            </div>
+                            <nav class="widget-nav">
+                                <ul>
+                                    <li><a href="#">Purchase</a></li>
+                                    <li><a href="#">FAQs</a></li>
+                                    <li><a href="#">Payment</a></li>
+                                    <li><a href="#">News</a></li>
+                                    <li><a href="#">Return</a></li>
+                                    <li><a href="#">Advertise</a></li>
+                                    <li><a href="#">Shipping</a></li>
+                                    <li><a href="#">Career</a></li>
+                                    <li><a href="#">Orders</a></li>
+                                    <li><a href="#">Policities</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <!-- Single Footer Widget -->
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="single-footer-widget">
+                            <div class="widget-title">
+                                <h5>ContactUs</h5>
+                            </div>
+
+                            <!-- Single Best Seller Products -->
+                            <div class="single-best-seller-product d-flex align-items-center">
+                                
+                                <div class="product-info">
+                                    <p>E-mail</p>
+                                    <p>yazantayem26@gmil.com</p>
+                                </div>
+                            </div>
+
+                            <!-- Single Best Seller Products -->
+                            <div class="single-best-seller-product d-flex align-items-center">
+                                <div class="product-info">
+                                    <p>E-mail</p>
+                                    <p>yazan97@outlook.com</p>
+                                </div>
+                            </div>
+                            <div class="single-best-seller-product d-flex align-items-center">
+                                <div class="product-info">
+                                    <p>Phone</p>
+                                    <p>0786477653</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Single Footer Widget -->
+                    <div class="col-12 col-sm-6 col-lg-3" id="contact">
+                        <div class="single-footer-widget">
+                            <div class="widget-title">
+                                <h5>CONTACT</h5>
+                            </div>
+
+                            <div class="contact-information">
+                                <form method="post">
+            <div class="form-group">
+                <label class="control-label"></label>
+                <input name="Firstname" placeholder="First Name" class="form-control mycontact"  required  />
+            </div>
+            <div class="form-group">
+                <label class="control-label"></label>
+                <input name="Lastname" placeholder="Last Name"  class="form-control mycontact" required />
+            </div>
+            <div class="form-group">
+                <label  class="control-label"></label>
+                <input name="Email" placeholder="Email"  class="form-control mycontact" required />
+            </div>
+            <div class="form-group">
+                <label  class="control-label"></label>
+                <input name="Phone" placeholder="Phone"  class="form-control mycontact" required />
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" name="Message" style="background-color:#9997c7; color: white;border-radius: 10px;" placeholder="Message" required></textarea>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="mycontact"  asp-action="Create" asp-controller="ContactUs"   style="margin-top: 0!important;border-color: #ced4da;font-size: 19px;"  value="Send">
+            </div>
+        </form>
+                                @*<p><span>Address:</span> 505 Silk Rd, New York</p>
+                                <p><span>Phone:</span> +1 234 122 122</p>
+                                <p><span>Email:</span> info.deercreative@gmail.com</p>
+                                <p><span>Open hours:</span> Mon - Sun: 8 AM to 9 PM</p>
+                                <p><span>Happy hours:</span> Sat: 2 PM to 4 PM</p>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom Area -->
+        <div class="footer-bottom-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="border-line"></div>
+                    </div>
+                    <!-- Copywrite Text -->
+                    <div class="col-12 col-md-6">
+                        <div class="copywrite-text">
+                            <p>&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> Tahaluf <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#" target="_blank">Yazan Tayem</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+</p>
+                        </div>
+                    </div>
+                    <!-- Footer Nav -->
+                    <div class="col-12 col-md-6">
+                        <div class="footer-nav">
+                            <nav>
+                                <ul>
+                                    <li><a asp-action="Index" asp-controller="Home">Home</a></li>
+                                    <li><a asp-action="AboutUsForCustomer" asp-controller="AboutUs">About</a></li>
+                                    <li><a asp-action="Create" asp-controller="Testimonial">Testimonial</a></li>
+                                    <li><a asp-action="AllProduct" asp-controller="ShopProduct">Shop</a></li>
+                                    @*<li><a href="#">Portfolio</a></li>
+                                    <li><a href="#">Blog</a></li>
+                                    <li><a href="#">Contact</a></li>*@
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area End ##### -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <!-- ##### All Javascript Files ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="~/assetsHeader/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="~/assetsHeader/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="~/assetsHeader/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="~/assetsHeader/js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="~/assetsHeader/js/active.js"></script>
+    
+    
+@*<script>
+var doc = new jsPDF();
+var specialElementHandlers = {
+    '#editor': function (element, renderer) {
+        return true;
+    }
+};
+
+$('#cmd').click(function () {
+    doc.fromHTML($('#content').html(), 15, 15, {
+        'width': 170,
+            'elementHandlers': specialElementHandlers
+    });
+    doc.save('sample-file.pdf');
+    console.log("mohammad");
+});
+</script>
+*@
+    <script>
+        if(@ViewBag.userName != null){
+            document.getElementById('btnLogin').style.display = "none!important";
+
+        }
+    </script>
+    
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
