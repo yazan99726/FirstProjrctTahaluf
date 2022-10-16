@@ -193,7 +193,7 @@ namespace FirstProjectMarketing.Controllers
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
                 client.UseDefaultCredentials = false;
                 System.Net.NetworkCredential credentials =
-                    new System.Net.NetworkCredential("yazantayem997@outlook.com", "120150622025y-");
+                    new System.Net.NetworkCredential("ya*******97@outlook.com", "*******");
                 client.EnableSsl = true;
                 client.Credentials = credentials;
 
